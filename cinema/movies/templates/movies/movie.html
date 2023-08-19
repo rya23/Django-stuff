@@ -1,0 +1,16 @@
+{%extends "movies/layout.html"%}
+
+{%block body%}
+
+<h1>{{movie.name}}</h1>
+<h3>Directed by: {{movie.director}} </h3>
+Starring :
+<ul>
+{%for actor in actors%}
+<li>{{actor.name}}</li>
+{%endfor%}
+</ul>
+
+
+{%endblock%}
+

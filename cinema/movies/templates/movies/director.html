@@ -1,0 +1,16 @@
+{%extends "movies/layout.html"%}
+
+{%block body%}
+<h1>{{director.name}}</h1>
+<ul>
+    {% for movie in director.movie_set.all %}
+
+
+    <li>{{ movie.name }}</li>
+    
+
+    {%endfor%}
+</ul>
+
+
+{%endblock%}

@@ -1,0 +1,23 @@
+{% extends "movies/layout.html" %}
+{%block head%}
+
+<title>Movie</title>
+{%endblock%}
+
+{% block body %}
+    <h1>Movies</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                {{ movie.id }} |
+                <a href="{% url 'movie' movie.id %}">{{ movie.name }}</a> released in {{ movie.year }} starring:
+                {% for actor in movie.actor.all %}
+                <a href = "{%url 'actor' actor.name %}">   {{ actor.name }} </a>
+                {% endfor %}
+                directed by:
+                <a href = "{%url 'director' movie.director %}"> {{ movie.director }} </a>
+            </li>
+        {% endfor %}
+        <a href = '{%url "add" %}'>Add a New Actor</a>
+    </ul>
+{% endblock %}
