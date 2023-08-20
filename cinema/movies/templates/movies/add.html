@@ -1,2 +1,21 @@
 {%extends "movies/layout.html"%}
- 
+
+{%block body%}
+<h1>Enter Movies</h1>
+<form action="{%url 'add' %}" method="post">
+
+    {%csrf_token%}
+    <!-- <label for="Movie">Movie</label> <br>
+    <input type="text" name="Movie" id="Movie"><br>
+    <label for="Year">Year Released</label><br>
+    <input type="number" name="Year" id="Year"><br>
+    <label for="Actor">Actor</label><br>
+    <input type="text" name="Actor" id="Actor"><br>
+    <label for="Director">Director</label><br>
+    <input type="text" name="Director" id="Director"><br> -->
+        {{form}}
+    <input type="submit" value="Submit">
+
+</form>
+
+{%endblock%}

@@ -10,7 +10,15 @@ Starring :
 <li>{{actor.name}}</li>
 {%endfor%}
 </ul>
+<form action="{%url 'insert' movie.id %}" method ="post">
 
+    {%csrf_token%}
+    <select name="actor" id ="">
+    {%for actor in not_inc%}
+        <option value="{{actor.id}}" >{{actor.name}}</option>
+    {%endfor%}
+</select>
+    <input type="submit" value="Submit">
 
 {%endblock%}
 
