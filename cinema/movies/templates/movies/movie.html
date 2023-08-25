@@ -1,22 +1,22 @@
 {%extends "movies/layout.html"%}
+{% load crispy_forms_tags %}
 
 {%block body%}
 
 <h1>{{movie.name}}</h1>
 <h3>Directed by: {{movie.director}} </h3>
+Added by {{movie.user}}<br>
 Starring :
 <ul>
 {%for actor in actors%}
-<li>{{actor.name}}</li>
+<li><a href = "{%url 'actor' actor.name %}">   {{ actor.name }} </a></li>
 {%endfor%}
 </ul>
-<form action="{%url 'insert' movie.id %}" method ="post">
+<form action="{%url 'movie' movie.id %}" method ="post">
 
     {%csrf_token%}
-    <select name="actor" id ="">
-    {%for actor in not_inc%}
-        <option value="{{actor.id}}" >{{actor.name}}</option>
-    {%endfor%}
+
+	{{ movie_form|crispy }}                    
 </select>
     <input type="submit" value="Submit">
 

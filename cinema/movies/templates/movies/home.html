@@ -1,0 +1,20 @@
+{% extends "movies/layout.html" %}
+{%block head%}
+
+<title>Movie</title>
+{%endblock%}
+
+{% block body %}
+    <h1>Movies</h1>
+    <ol>
+        {% for movie in movies %}
+            <li>
+                <a href="{% url 'movie' movie.id %}">{{ movie.name }}</a> released in {{ movie.year }} starring:
+                directed by:
+                <a href = "{%url 'director' movie.director %}"> {{ movie.director }} </a>
+                
+            </li>
+        {% endfor %}
+     
+    </ul>
+{% endblock %}
