@@ -8,17 +8,26 @@
 Added by {{movie.user}}<br>
 Starring :
 <ul>
-{%for actor in actors%}
-<li><a href = "{%url 'actor' actor.name %}">   {{ actor.name }} </a></li>
-{%endfor%}
+    {%for actor in actors%}
+    <li><a href="{%url 'actor' actor.name %}"> {{ actor.name }} </a></li>
+    {%endfor%}
 </ul>
-<form action="{%url 'movie' movie.id %}" method ="post">
+{%if user.is_authenticated%}
+
+
+<form action="{%url 'movie' movie.id %}" method="post">
 
     {%csrf_token%}
 
-	{{ movie_form|crispy }}                    
-</select>
+    {{ movie_form|crispy }}
+    </select>
     <input type="submit" value="Submit">
+    {%endif%}
+    {% if movie.user == user %}
+    <div>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'delete' movie.id %}">Delete</a>
+        </form>
+    </div>
+    {%endif%}
 
-{%endblock%}
-
+    {%endblock%}
