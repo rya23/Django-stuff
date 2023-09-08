@@ -6,7 +6,6 @@
 __pycache__
 db.sqlite3
 media
-
 # Backup files # 
 *.bak 
 
@@ -136,3 +135,5 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+cinema/movies/__pycache__/views.cpython-311.pyc
+cinema/movies/__pycache__/views.cpython-311.pyc

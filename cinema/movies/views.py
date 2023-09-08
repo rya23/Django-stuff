@@ -9,8 +9,6 @@ from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.generic import DeleteView
-
 # Create your views here.
 
 
@@ -91,8 +89,7 @@ def movie(request, movie_id):
                 actor_name = actor_name.strip()
                 actor, created = Actor.objects.get_or_create(name=actor_name)
                 movie.actor.add(actor)
-            # return HttpResponseRedirect(reverse("movie",args=(movie.id,)))
-            return HttpResponseRedirect(reverse("movie"))
+            return HttpResponseRedirect(reverse("movie",args=(movie.id,)))
     else:
         movie_form = ActorForm()
 
@@ -139,18 +136,18 @@ def delete(request,movie_id):
    return render(request, "movies/delete.html",{"movie": movie})
 
 
-@login_required
-def update_movie(request, movie_id):
-    movie = Movie.objects.get(id=movie_id)
-    if request.user == movie.user:
-        if request.method == "POST":
-            form = MovieForm(request.POST, instance=movie)
-            if form.is_valid():
-                form.save()
-                return redirect('home')  # Redirect to the movies list
-        else:
-            form = MovieForm(instance=movie)
+# @login_required
+# def update_movie(request, movie_id):
+#     movie = Movie.objects.get(id=movie_id)
+#     if request.user == movie.user:
+#         if request.method == "POST":
+#             form = MovieForm(request.POST, instance=movie)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect('home')  # Redirect to the movies list
+#         else:
+#             form = MovieForm(instance=movie)
 
-        return render(request, "movies/movie_update.html", {"form": form})
-    else:
-        return redirect('home')
+#         return render(request, "movies/movie_update.html", {"form": form})
+#     else:
+#         return redirect('home')
